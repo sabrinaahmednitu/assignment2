@@ -4,11 +4,11 @@
 
 ## Description
 
-The project is a backend application built using Express TypeScript and Node.js.It has Mongoose for MongoDB interactions, Zod for schema validation and CORS and  eslint for cross-origin resource sharing This README file will guide you on how to set up and run this application locally.
+The project is built using Express TypeScript and Node.js.It has Mongoose for MongoDB , Zod for schema validation and CORS and  eslint for cross-origin resource sharing .This README file will guide you on how to set up and run this application locally.
 
 ## Must have
 
-Before you begin, ensure you have met the following requirements:
+ Ensure you have met the following requirements:
 - Node.js 
 - npm 
 - MongoDB 
@@ -29,7 +29,6 @@ Before you begin, ensure you have met the following requirements:
 
 3. **Create a .env file in the root of your project:**
     
-    
     Add the necessary environment variables to the .env file. For example:
     
     DB_URL=mongodb://localhost:5000/myDatabase
@@ -40,9 +39,6 @@ url:
 
 
 ## Run the Application
-
-### In Development Mode
-
 To run the application the command is :
 
 npm run start:dev
