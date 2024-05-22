@@ -1,5 +1,6 @@
 import { Product } from "./product.interface";
 import { ProductModel } from "./product.model";
+import { Types } from 'mongoose';
 
 //1. Create a New Product (Method: POST)
 const createProductIntoDB = async (product: Product) => {
@@ -12,15 +13,20 @@ const getAllProductsFromtoDB = async () => {
   return result;
 };
 //3. Retrieve a Specific Product by ID (Method: GET)
-const getSingleProductsFromtoDB = async (productId: string) => {
-  const result = await ProductModel.findOne({ productId });
-  return result;
+const getProductById = async (productId: string) => {
+    if (!Types.ObjectId.isValid(productId)) {
+        throw new Error('Invalid product ID');
+    }
+    const result = await ProductModel.findById(productId).exec();
+    if (!result) {
+        throw new Error('Product not found');
+    }
+    return result;
 };
-
 
 
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromtoDB,
-  getSingleProductsFromtoDB,
+  getProductById,
 };

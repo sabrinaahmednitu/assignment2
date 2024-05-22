@@ -31,27 +31,25 @@ const getAllProducts = async(req:Request, res:Response) => {
         console.log(err)
    }
 }
-//2. Retrieve a List of All Products (Method: GET) controller
-const getSingleProduct = async(req:Request, res:Response) => {
-    try {
-        const { productId } = req.params;
-        console.log(productId);
-        const result = await ProductServices.getSingleProductsFromtoDB(productId);
-        //send response
-        res.status(200).json({
-          success: true,
-          message: 'Product fetched successfully!',
-          data: result,
-        });
-    } catch (err) {
-        console.log(err)
-   }
-}
+//3. Retrieve a Specific Product by ID (Method: GET) controller
+const getProductById = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const result = await ProductServices.getProductById(productId);
+    res.status(200).json({
+      success: true,
+      message: 'Product fetched successfully!',
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 
 
 export const ProductControllers = {
   createProduct,
   getAllProducts,
-  getSingleProduct,
+  getProductById,
 };
