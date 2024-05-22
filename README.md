@@ -34,11 +34,10 @@ The project is built using Express TypeScript and Node.js.It has Mongoose for Mo
     DB_URL=mongodb://localhost:5000/myDatabase
     PORT=5000
     
-4. **Create hosting projects vercel:**
-url:  
+4. **vercel server link:**
+url:  https://assignment-2-nu-seven.vercel.app
 
 
 ## Run the Application
-To run the application the command is :
 
-npm run start:dev
+To run the application the command is : npm run start:dev

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+//validation with zod
 const inventoryValidationSchema = z.object({
   quantity: z
     .number()
