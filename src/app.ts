@@ -8,9 +8,11 @@ app.use(express.json());
 app.use(cors());
 
 
-//E-commerce appliation routes
+//Product Management route
 app.use('/api/products', ProductRoutes);
 
+//Order Management route
+app.use('/api/orders', ProductRoutes);
 
 
 export default app;
