@@ -6,7 +6,7 @@ const router = express.Router()
 router.post('/', productControllers.createProduct)
 
 //2. Retrieve a List of All Products (Method: GET) route
-router.get('/', productControllers.getAllProducts)
+router.get('/', productControllers.getAllOrSearchProducts)
 
 //3. Retrieve a Specific Product by ID (Method: GET) route
 router.get('/:productId', productControllers.getProductById)

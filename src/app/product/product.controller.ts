@@ -24,24 +24,36 @@ const createProduct = async (req: Request, res: Response) => {
   }
 }
 
-//2. Retrieve a List of All Products and search  (Method: GET) controller
-const getAllProducts = async (req: Request, res: Response) => {
+//2. Retrieve a List of All Products or Search Products (Method: GET) controller
+const getAllOrSearchProducts = async (req: Request, res: Response) => {
   try {
-    const { searchTerm } = req.query
-    const result = await productServices.getAllProducts(searchTerm)
-    res.json({
-      success: true,
-      message: 'Products fetched successfully!',
-      data: result,
-    })
+    const { searchTerm } = req.query;
+    let result;
+    if (searchTerm) {
+      result = await productServices.searchProducts(searchTerm as string);
+      res.status(200).json({
+        success: true,
+        message: `Products matching search term '${searchTerm}' fetched successfully!`,
+        data: result,
+      });
+    } else {
+      result = await productServices.getAllProductsFromtoDB();
+      res.status(200).json({
+        success: true,
+        message: 'Products fetched successfully!',
+        data: result,
+      });
+    }
   } catch (err) {
+    console.error(err);
     res.status(500).json({
       success: false,
-      message: 'something went wrong',
+      message: 'Something went wrong',
       data: err,
-    })
+    });
   }
-}
+};
+
 
 //3. Retrieve a Specific Product by ID (Method: GET) controller
 const getProductById = async (req: Request, res: Response) => {
@@ -114,7 +126,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 
 export const productControllers = {
   createProduct,
-  getAllProducts,
+  getAllOrSearchProducts,
   getProductById,
   updateProduct,
   deleteProduct,

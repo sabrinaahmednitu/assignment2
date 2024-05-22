@@ -8,14 +8,25 @@ const createProduct = async (payLoad: TProduct) => {
 }
 
 //2. Retrieve a List of All Products and Search (Method: GET)
-const getAllProducts = async (searchTerm: unknown) => {
-  if (typeof searchTerm === 'string') {
-    const result = Product.find({ $text: { $search: searchTerm } })
-    return result
-  }
-  const result = await Product.find()
-  return result
-}
+// Retrieve a List of All Products (Method: GET)
+const getAllProductsFromtoDB = async () => {
+  const result = await Product.find();
+  return result;
+};
+
+// Search a product (Method: GET)
+const searchProducts = async (searchTerm: string) => {
+  const regex = new RegExp(searchTerm, 'i');
+  const result = await Product.find({
+    $or: [
+      { name: regex },
+      { description: regex },
+      { category: regex },
+      { tags: regex },
+    ],
+  });
+  return result;
+};
 
 //3. Retrieve a Specific Product by ID (Method: GET)
 const getProductById = async (id: string) => {
@@ -45,7 +56,8 @@ const deleteProduct = async (id: string) => {
 
 export const productServices = {
   createProduct,
-  getAllProducts,
+  getAllProductsFromtoDB,
+  searchProducts,
   getProductById,
   updateProduct,
   deleteProduct,
