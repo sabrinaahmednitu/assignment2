@@ -11,8 +11,10 @@ router.get('/',ProductControllers.getAllProducts);
 router.get('/:productId', ProductControllers.getProductById);
  //4. Update Product Information (Method: PUT) route
 router.put('/:productId', ProductControllers.updateProductById);
-
-
+//5. Function to delete a product by ID (Method: DELETE) route
+router.delete('/:productId', ProductControllers.deleteProductById);
+//6. Search a product (Method: GET) route
+router.get('/', ProductControllers.searchProducts);
 
 
 

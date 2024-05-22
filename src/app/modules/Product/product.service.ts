@@ -35,10 +35,27 @@ const deleteProductById = async (productId: string) => {
     return result;
 };
 
+//6. Search a product (Method: GET)
+const searchProducts = async (searchTerm: string) => {
+    const regex = new RegExp(searchTerm, 'i'); 
+    const result = await ProductModel.find({
+        $or: [
+            { name: regex },
+            { description: regex },
+            { category: regex },
+            { tags: regex }
+        ]
+    });
+    return result;
+};
+
+
+
 export const ProductServices = {
   createProductIntoDB,
   getAllProductsFromtoDB,
   getProductById,
   updateProductById,
   deleteProductById,
+  searchProducts,
 };

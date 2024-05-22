@@ -65,11 +65,41 @@ const updateProductById = async (req: Request, res: Response) => {
   }
 };
 
-//5. Function to delete a product by ID (Method: DELETE)
+//5. Function to delete a product by ID (Method: DELETE) controller
+const deleteProductById = async (req: Request, res: Response) => {
+    try {
+        const { productId } = req.params;
+        await ProductServices.deleteProductById(productId);
+        res.status(200).json({
+          success: true,
+          message: 'Product deleted successfully!',
+          data: null,
+        });
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+//6. Search a product (Method: GET) controller
+const searchProducts = async (req: Request, res: Response) => {
+  try {
+    const { searchTerm } = req.query;
+    const result = await ProductServices.searchProducts(searchTerm as string);
+    res.status(200).json({
+      success: true,
+      message: `Products matching search term '${searchTerm}' fetched successfully!`,
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getProductById,
   updateProductById,
+  deleteProductById,
+  searchProducts,
 };
