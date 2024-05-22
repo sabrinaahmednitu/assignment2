@@ -14,7 +14,7 @@ router.get('/:productId', productControllers.getProductById)
  //4. Update Product Information (Method: PUT) route
 router.delete('/:productId', productControllers.deleteProduct)
 
-//5. Function to delete a product by ID (Method: DELETE) route
+//5. delete a product by ID (Method: DELETE) route
 router.put('/:productId', productControllers.updateProduct)
 
 export const productRouter = router
