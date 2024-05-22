@@ -46,10 +46,30 @@ const getProductById = async (req: Request, res: Response) => {
   }
 };
 
+//4. Update Product Information (Method: PUT) controller
+const updateProductById = async (req: Request, res: Response) => {
+  try {
+    const { productId } = req.params;
+    const updateData = req.body;
+    const result = await ProductServices.updateProductById(
+      productId,
+      updateData
+    );
+    res.status(200).json({
+      success: true,
+      message: 'Product updated successfully!',
+      data: result,
+    });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
+//5. Function to delete a product by ID (Method: DELETE)
 
 export const ProductControllers = {
   createProduct,
   getAllProducts,
   getProductById,
+  updateProductById,
 };
